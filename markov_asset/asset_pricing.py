@@ -17,7 +17,7 @@ References
 """
 from textwrap import dedent
 import numpy as np
-from numpy.linalg import solve
+from numpy.linalg import solve, eigvals
 
 
 class AssetPrices(object):
@@ -81,6 +81,14 @@ class AssetPrices(object):
         self.beta, self.gamma = beta, gamma
         self.P, self.s = P, s
         self.n = self.P.shape[0]
+
+        # Create P_tilde
+        Ptilde = self.P_tilde
+        ev = eigvals(beta*Ptilde)
+        lt1 = np.all(np.absolute(ev) < 1.0)
+        if not lt1:
+            msg = "All eigenvalues of Ptilde must be less than 1"
+            raise ValueError(msg)
 
     def __repr__(self):
         m = "AssetPrices(beta={b:g}, P='{n:g} by {n:g}', s={s}, gamma={g:g})"
