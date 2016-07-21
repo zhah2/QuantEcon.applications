@@ -84,10 +84,10 @@ class AssetPrices(object):
 
         # Create P_tilde
         Ptilde = self.P_tilde
-        ev = eigvals(beta*Ptilde)
-        lt1 = np.all(np.absolute(ev) < 1.0)
+        ev = beta*eigvals(Ptilde)
+        lt1 = np.all(ev.real < 1.0)
         if not lt1:
-            msg = "All eigenvalues of Ptilde must be less than 1"
+            msg = "All eigenvalues of Ptilde must be less than 1/beta"
             raise ValueError(msg)
 
     def __repr__(self):
