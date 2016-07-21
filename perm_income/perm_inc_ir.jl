@@ -37,8 +37,8 @@ end
 
 function main()
     fix, axes = subplots(2, 1)
-    plt.subplots_adjust(hspace=0.5)
-    p_args = {:lw=> 2, :alpha => 0.7}
+    subplots_adjust(hspace=0.5)
+    p_args = Dict(:lw=> 2, :alpha => 0.7)
 
     L = 0.175
 

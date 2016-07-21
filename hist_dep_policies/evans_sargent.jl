@@ -201,8 +201,8 @@ function plot1(rp::RamseyPath)
     end
 
     bbox = (0., 1.02, 1., .102)
-    legend_args = {:bbox_to_anchor => bbox, :loc => 3, :mode => "expand"}
-    p_args = {:lw => 2, :alpha => 0.7}
+    legend_args = Dict(:bbox_to_anchor => bbox, :loc => 3, :mode => "expand")
+    p_args = Dict(:lw => 2, :alpha => 0.7)
 
     ax = axes[1]
     ax[:plot](tt, squeeze(y[2, :], 1), "b-", label="output"; p_args...)
@@ -223,7 +223,6 @@ function plot1(rp::RamseyPath)
     ax[:legend](ncol=1; legend_args...)
     ax[:set_xlabel](L"time", fontsize=16)
 
-    plt.show()
 end
 
 function plot2(rp::RamseyPath)
@@ -236,15 +235,15 @@ function plot2(rp::RamseyPath)
     n_rows = 4
     fig, axes = subplots(n_rows, 1, figsize=(10, 16))
 
-    plt.subplots_adjust(hspace=0.5)
+    subplots_adjust(hspace=0.5)
     for ax in axes
         ax[:grid](alpha=.5)
         ax[:set_xlim](-0.5, 15)
     end
 
     bbox = (0., 1.02, 1., .102)
-    legend_args = {:bbox_to_anchor => bbox, :loc => 3, :mode => "expand"}
-    p_args = {:lw => 2, :alpha => 0.7}
+    legend_args = Dict(:bbox_to_anchor => bbox, :loc => 3, :mode => "expand")
+    p_args = Dict(:lw => 2, :alpha => 0.7)
 
     ax = axes[1]
     ax[:plot](tt2, tauhatdif,
@@ -274,7 +273,6 @@ function plot2(rp::RamseyPath)
 
     ax[:set_xlabel](L"time", fontsize=16)
 
-    plt.show()
 end
 
 
